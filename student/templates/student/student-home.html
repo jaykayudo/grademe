@@ -1,0 +1,80 @@
+{% extends 'student/student-base.html' %}
+{% block content %}
+    <div>
+        <section class="home-box">
+            <h2 class="section-header">
+                Student Dashboard
+            </h2>
+            <div class="section-metrics">
+            <div class="metrics-box" style="background-color: #fce76273;">
+                <div>
+                    <p>Number of result session</p>
+                    <h2>{{number_of_session}}</h2>
+                </div>
+                <div>
+                    <i data-feather="file-text" style="color: #ffe014;"></i>
+                </div>
+            </div>
+            <div class="metrics-box" style="background-color: #69fff06f;">
+                <div>
+                    <p>CGPA</p>
+                    <h2>{{cgpa}}</h2>
+                </div>
+                <div>
+                    <i data-feather="file-text" style="color: #69FFF1;"></i>
+                </div>
+            </div>
+            <div class="metrics-box" style="background-color: #5465ff6c;">
+                <div>
+                    <p>Latest Semester Result</p>
+                    <h2>{{latest_semester}}</h2>
+                </div>
+                <div>
+                    <i data-feather="file-text" style="color: #5465FF;"></i>
+                </div>
+            </div>
+            <div class="metrics-box" style="background-color: #f45b6876;">
+                <div>
+                    <p>Latest Session Result</p>
+                    <h2>{{latest_session}}</h2>
+                </div>
+                <div>
+                    <i data-feather="file-text" style="color: #F45B69;"></i>
+                </div>
+            </div>
+            </div>
+            
+            
+        </section>
+        <section>
+        <section class="home-box" style="width: 60%;">
+            <h2 class="section-header">
+                Recent Notification
+            </h2>
+            <section class="section-content">
+                {% for data in latest_notification %}
+                <div class="notification-box">
+                    <div>
+                        <h3>{{data.title}}</h3>
+                        <p>{{data.message}}</p>
+                    </div> 
+                    <div>
+                        <p class="small-text">
+                            {{data.date|date:"d/m/Y h:i"}}
+                        </p>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="notification-box">
+                    <p class="text-center">
+                        No Notification Yet
+                    </p>
+                </div>
+                {% endfor %}
+                
+            </section>
+        </section> 
+        </section>
+        
+    </div>
+{% endblock %}

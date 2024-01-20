@@ -1,0 +1,75 @@
+.text-center{
+    text-align: center;
+}
+.text-bold{
+    font-weight: bold;
+}
+.upper-text{
+    text-transform: uppercase;
+}
+.capital-text{
+    text-transform: capitalize;
+}
+.small-text{
+    font-size: 12px;
+}
+.normal-text2{
+    font-size: 15px;
+}
+.normal-text{
+    font-size: 16px;
+}
+.header2-text{
+    font-size: 18px;
+}
+.header1-text{
+    font-size: 20px;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.flex-start{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.btn{
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 15px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.danger-btn{
+    background-color: rgb(249, 54, 93);
+    color: white;
+}
+.danger-btn:hover{
+    background-color: crimson;
+}
+
+.success-btn{
+    background-color: rgb(24, 183, 93);
+    color: white;
+}
+.success-btn:hover{
+    background-color: green;
+}

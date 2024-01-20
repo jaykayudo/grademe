@@ -1,0 +1,41 @@
+
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">Departments</h2>
+            <p class="normal-text2">View all  Admin</p>
+        </div>
+        <div style="width: 100%;">
+            <table class="upload-table">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Added by
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+                {% for object in page_obj %}
+                <tr>
+                    <td>
+                        {{object.name}}
+                    </td>
+                    <td>
+                        {{object.created_by}}
+                    </td>
+                    <td>
+                        <a href="{% url 'chiefadmin:department_edit' object.id %}" class="form-btn">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+                {% include 'paginator.html' %}
+        </div>
+        
+    </div>
+{% endblock %}

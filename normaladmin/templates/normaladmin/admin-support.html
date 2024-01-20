@@ -1,0 +1,57 @@
+{% extends 'normaladmin/admin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">Support Messages</h2>
+            <p class="normal-text2">View all the support messages</p>
+        </div>
+        <div style="width: 100%;">
+            <table class="upload-table">
+                <tr>
+                    <th>
+                        Student Reg No
+                    </th>
+                    <th>
+                        Reason
+                    </th>
+                    <th>
+                        Message
+                    </th>
+                    <th>
+                        Date Sent
+                    </th>
+                    <th>
+                        Replied
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+                {% for data in page_obj %}
+                <tr>
+                    <td>
+                        {{data.student.matric_number}}
+                    </td>
+                    <td>
+                        {{data.title}}
+                    </td>
+                
+                    <td>
+                        {{data.message}}
+                    </td>
+                    <td>
+                        {{data.date}}
+                    </td>
+                    <td>
+                        {{data.replied|yesno}}
+                    </td>
+                    <td>
+                        <a href="#" class="form-btn">Reply</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% include  "pagination.html" %}
+    </div>
+{% endblock %}

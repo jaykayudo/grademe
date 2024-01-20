@@ -1,0 +1,72 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">Approve Single Result</h2>
+            <p class="normal-text2">View all Pending results yet</p>
+        </div>
+        <div style="width: 100%;">
+            <table class="upload-table">
+                <tr>
+                    <th>
+                        Session
+                    </th>
+                    <th>
+                        Semester
+                    </th>
+                    <th>
+                        Department
+                    </th>
+                    <th>
+                        Matric Number
+                    </th>
+                    <th>
+                        Date Uploaded
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Uploaded by
+                    </th>
+                </tr>
+                {% for object in page_obj %}
+                <tr>
+                    <td>
+                        <a href="{% url 'chiefadmin:result_single_details' object.id  %}">
+                          {{object.session}}  
+                        </a>
+                    </td>
+                    <td>
+                        {{object.get_semester_display}}
+                    </td>
+                    <td>
+                        {{object.department}}
+                    </td>
+                    <td>
+                        {{object.student.matric_number}}
+                    </td>
+                    <td>
+                        {{object.date_created}}
+                    </td>
+                    <td class="pending">
+                        Pending
+                    </td>
+                    <td>
+                        <div class="flex">
+                         <div class="table-image">
+                             <img src="{{object.uploaded_by.image.url}}" alt="">
+                         </div>
+                         <div>
+                             {{object.uploaded_by}}
+                         </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+                {% include 'paginator.html' %}
+        </div>
+        
+    </div>
+{% endblock %}

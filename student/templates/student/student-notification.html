@@ -1,0 +1,28 @@
+{% extends 'student/student-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">Notification</h2>
+            <p class="normal-text2">View all your Notification</p>
+        </div>
+        <div style="width: 100%;">
+            <section class="section-content">
+                {% for data in page_obj %}
+                <div class="notification-box">
+                    <div>
+                        <h3>{{data.title}}</h3>
+                        <p>{{data.message}}</p>
+                    </div> 
+                    <div>
+                        <p class="small-text">
+                            {{data.date|date:'d/m/Y h:i'}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+                {% include 'paginator.html' %}
+            </section>
+        </div>
+        
+    </div>
+{% endblock %}

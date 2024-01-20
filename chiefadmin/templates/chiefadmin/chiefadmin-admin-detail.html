@@ -1,0 +1,101 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="flex" style="margin-bottom: 15px;">
+        <div class="img-case">
+            <img src="#" alt="Profile Image" class="profile-image">
+        </div>
+        <div>
+            <h2 class="section-header">Admin Detail</h2>
+            <p class="normal-text2">View Admin Details, activate admin , reset password </p>
+        </div>
+        
+        </div>
+        
+        <div>
+            <div class="flex-between" style="padding: 15px 0;">
+                {% if object.user.is_active %}
+                <a href="#" class="btn danger-btn">Deactivate</a>
+                {% else %}
+                <a href="#" class="btn success-btn">Activate</a>
+                {% endif %}
+                <a href="{% url 'chiefadmin:admin_edit' %}" class="form-btn">Edit</a>
+                <a href="#" class="form-btn">Reset Password</a>
+            </div>
+            <table class="profile-table2">
+                <tr>
+                    <th>
+                        FullName
+                    </th>
+                    <td>
+                        {{object}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Email
+                    </th>
+                    <td>
+                        {{object.email}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Department
+                    </th>
+                    <td>
+                        {{object.department}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Phonenumber
+                    </th>
+                    <td>
+                        {{object.phonenumber}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Created By
+                    </th>
+                    <td>
+                        {{object.created_by}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <section style=" display: block;margin-top: 40px;">
+            <h3 class="section-header text-center">
+                Actions History
+            </h3>
+            <table class="upload-table">
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Message
+                    </th>
+                    <th>
+                        Date Made
+                    </th>
+                </tr>
+                {% for obj in page_obj %}
+                <tr>
+                    <td>
+                        {{obj.title}}
+                    </td>
+                    <td>
+                        {{obj.message}}
+                    </td>
+                    <td>
+                        {{obj.date}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% include 'paginator.html' %}
+        </section>
+    </div>
+{% endblock %}

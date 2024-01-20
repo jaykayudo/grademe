@@ -1,0 +1,78 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">Approve Bulk Result</h2>
+            <p class="normal-text2">View all Pending bulk results yet</p>
+        </div>
+        <div style="width: 100%;">
+            <table class="upload-table">
+                <tr>
+                    <th>
+                        Session
+                    </th>
+                    <th>
+                        Semester
+                    </th>
+                    <th>
+                        Department
+                    </th>
+                    <th>
+                        Course
+                    </th>
+                    <th>
+                        File Type
+                    </th>
+                    <th>
+                        Date Uploaded
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Uploaded by
+                    </th>
+                </tr>
+                {% for object in page_obj %}
+                <tr>
+                    <td>
+                        <a href="{% url 'chiefadmin:result_bulk_details' %}">
+                          {{object.session}}
+                        </a>
+                    </td>
+                    <td>
+                        {{object.get_semester_display}}
+                    </td>
+                    <td>
+                        {{object.department}}
+                    </td>
+                    <td>
+                        {{object.course}}
+                    </td>
+                    <td>
+                        {{object.file.name}}
+                    </td>
+                    <td>
+                        {{object.date_created}}
+                    </td>
+                    <td class="pending">
+                        Pending
+                    </td>
+                    <td>
+                       <div class="flex">
+                        <div class="table-image">
+                            <img src="{{object.uploaded_by.image.url|default:''}}" alt="">
+                        </div>
+                        <div>
+                            {{object.uploaded_by}}
+                        </div>
+                       </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+                {% include 'paginator.html' %}
+        </div>
+        
+    </div>
+{% endblock %}

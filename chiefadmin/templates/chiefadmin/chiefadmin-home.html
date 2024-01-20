@@ -1,0 +1,114 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div>
+        <section class="home-box">
+            <h2 class="section-header">
+                Chief Admin Dashboard
+            </h2>
+            <div class="section-metrics">
+                <div class="metrics-box" style="background-color: #fce76273;">
+                    <div>
+                        <p>Number of Student</p>
+                        <h2>{{number_of_students}}</h2>
+                    </div>
+                    <div>
+                        <i data-feather="file-text" style="color: #ffe014;"></i>
+                    </div>
+                </div>
+                <div class="metrics-box" style="background-color: #69fff06f;">
+                    <div>
+                        <p>Number of Admins</p>
+                        <h2>{{number_of_admins}}</h2>
+                    </div>
+                    <div>
+                        <i data-feather="file-text" style="color: #69FFF1;"></i>
+                    </div>
+                </div>
+                <div class="metrics-box" style="background-color: #5465ff6c;">
+                    <div>
+                        <p>Number of Unapproved Students</p>
+                        <h2>{{number_of_unapproved_students}}</h2>
+                    </div>
+                    <div>
+                        <i data-feather="file-text" style="color: #5465FF;"></i>
+                    </div>
+                </div>
+                <div class="metrics-box" style="background-color: #f45b6876;">
+                    <div>
+                        <p>Number of Unapproved Result</p>
+                        <h2>{{number_of_unapproved_result}}</h2>
+                    </div>
+                    <div>
+                        <i data-feather="file-text" style="color: #F45B69;"></i>
+                    </div>
+                </div>
+                
+                </div>
+                <section class="flex">
+                    <div class="metrics-box" style="background-color: #59f04f76;">
+                    <div>
+                        <p>Number of Courses</p>
+                        <h2>{{number_of_courses}}</h2>
+                    </div>
+                    <div>
+                        <i data-feather="file-text" style="color: #5af04f;"></i>
+                    </div>
+                </div>
+                <div class="metrics-box" style="background-color: #aa5bf44a;">
+                    <div>
+                        <p>Number of Department</p>
+                        <h2>{{number_of_department}}</h2>
+                    </div>
+                    <div>
+                        <i data-feather="file-text" style="color: #aa5bf4;"></i>
+                    </div>
+                </div>
+                </section>
+            
+            
+        </section>
+        <section class="flex-between">
+        <section class="home-box" style="width: 60%;">
+            <h2 class="section-header">
+                Recent Notification
+            </h2>
+            <section class="section-content">
+                {% for data in latest_notification %}
+                <div class="notification-box">
+                    <div>
+                        <h3>{{data.title}}</h3>
+                        <p>{{data.message}}</p>
+                    </div> 
+                    <div>
+                        <p class="small-text">
+                            {{data.date|date:'d/m/Y h:i'}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </section>
+        </section> 
+        <section class="home-box" style="width: 37%">
+            <h2 class="section-header">
+                Recent Actions
+            </h2>
+            <section class="section-content">
+                {% for data in latest_action %}
+                <div class="notification-box">
+                    <div>
+                        <h3>{{data.title}}</h3>
+                        <p>{{data.message}}</p>
+                    </div> 
+                    <div>
+                        <p class="small-text">
+                            {{data.date|date:'d/m/Y h:i'}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </section>
+        </section>
+        </section>
+        
+    </div>
+{% endblock %}

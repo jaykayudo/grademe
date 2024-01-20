@@ -1,0 +1,93 @@
+{% extends 'normaladmin/admin-base.html' %}
+{% load static %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'general/select2.min.css' %}">
+{% endblock %}
+{% block content %}
+<div class="form-cover">
+    <div class="result-form-box">
+        
+                <form action="" method="post">
+                    <h2 class="text-center text-bold" style="margin-bottom: 10px;">Upload Bulk Result</h2>
+                    <div class="dynamic-group">
+                        <span class="error-text">{{form.non_field_errors|default:""}}</span>
+                            <div class="form-group-flex">
+                                <div class="side-form-group">
+                                <label class="form-input-label">Session</label>
+                                <select name="session" class="form-input" id="" required>
+                                    <option value="">--Select a Session--</option>
+                                    {% for id, x in form.fields.session.choices %}
+                                      <option {% if form.session.value == id %}selected{% endif %} value="{{id}}">{{x}}</option>
+                                    {% endfor %}
+                                </select>
+                                <span class="error-text">{{form.session.errors|default:""}}</span>
+                            </div> 
+                            <div class="side-form-group">
+                                <label class="form-input-label">Semester</label>
+                                <select name="semester" class="form-input" id="" required>
+                                    <option value="">--Select a Semester--</option>
+                                    {% for id, x in form.fields.semester.choices %}
+                                      <option {% if form.semester.value == id %}selected{% endif %} value="{{id}}">{{x}}</option>
+                                    {% endfor %}
+                                </select>
+                                <span class="error-text">{{form.semester.errors|default:""}}</span>
+                            </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="form-input-label">Department</label>
+                                <input type="text" value="{{request.usertype.department}}" class="form-input" readonly  required>
+                                <input type="hidden" name="department" value="{{request.usertype.department.id}}" required>
+                                <span class="error-text">{{form.department.errors|default:""}}</span>
+                            </div>  
+                            <div class="form-group">
+                                <label class="form-input-label">Course</label>
+                                <select name="session" class="form-input course-select" required>
+                                    <option value="">--Select a Course--</option>
+                                    {% for id, x in form.fields.course.choices %}
+                                      <option {% if form.course.value == id %}selected{% endif %} value="{{id}}">{{x}}</option>
+                                    {% endfor %}
+                                </select>
+                                <span class="error-text">{{form.course.errors|default:""}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-input-label">File</label>
+                                <div>
+                                <button type="button" class="form-btn" id="file-btn">
+                                    Choose a File
+                                </button>
+                                <input type="file" id="file" name="file" hidden required>
+                                
+                                </div>
+                                <span class="small-text"> 
+                                    File Should either be a csv file or an excel file and the first row should be the header of each column. <br>
+                                    The headers should be this respectively (Matric NO, Course Code, Score, Grade)
+                                </span><br>
+                                <span class="error-text">{{form.file.errors|default:""}}</span>
+                            </div>    
+                            
+                    </div>
+                           
+                    <div class="btn-middle-container">
+                        <button type="button" class="form-btn" id="submitBtn">
+                            Submit
+                        </button>
+                    </div>
+                    </form>    
+        
+ 
+        
+    </div>
+</div>
+{% endblock %}    
+{% block extrascript %}
+    <script src="{% static 'general/jquery.js' %}"></script>
+    <script src="{% static 'general/select2.min.js' %}"></script>
+    <script src="{% static 'normaladmin/normaladmin.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.course-select').select2();
+            bulkResultNeed();
+        })
+    </script>
+{% endblock %}

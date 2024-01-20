@@ -1,0 +1,53 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% load static %}
+{% block content %}
+    <div class="form-cover">
+        <div class="form-box shadow-box">
+            <form  method="post">
+                {% csrf_token %}
+                <h2 class="text-center text-bold" style="margin-bottom: 10px;">{{form_type}} Course</h2>
+                <div id="forms">
+                    <div class="form-group">
+                        <label class="form-input-label">Course Code</label>
+                        <input type="text" class="form-input" name="code" value="{{form.code.value|default:''}}" placeholder="EX: COS 432" required>
+                        <span class="error-text">
+                            {{form.code.errors|default:""}}
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-input-label">Course Name</label>
+                        <input type="text" class="form-input" name="title" value="{{form.title.value|default:''}}"  placeholder="EX: Algorithm" required>
+                        <span class="error-text">
+                            {{form.title.errors|default:''}}
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-input-label">Unit Load</label>
+                        <input type="number" class="form-input" placeholder="EX: Algorithm">
+                        <span class="error-text">
+                            {{form.unit_load.errors|default:""}}
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-input-label">Department</label>
+                        <select name="department" class="form-input" id="" required>
+                            {% for id, x in form.fields.department.choices %}
+                                <option {% if form.department.value == id %}selected{% endif %} value="{{id}}">{{x}}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="error-text">
+                            {{form.department.errors|default:""}}
+                        </span>
+                    </div>
+                    <input type="hidden" name="created_by" value="{{request.usertype.id}}" required>  
+                </div>
+                <div class="btn-middle-container">
+                    <button type="submit" class="form-btn" id="submitBtn">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>    
+    </div>
+
+{% endblock %}

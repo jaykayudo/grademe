@@ -1,0 +1,30 @@
+{% extends 'student/student-base.html' %}
+{% load static %}
+{% block content %}
+    <div class="form-cover">
+        <div class="form-box shadow-box">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h2 class="text-center text-bold" style="margin-bottom: 10px;">Contact Department Support</h2>
+                <div id="forms">
+                    <div class="form-group">
+                        <label class="form-input-label">Reason</label>
+                        <input name="title" class="form-input"  required/>
+                        <span class="error-text">{{form.title.errors|default:''}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-input-label">Message</label>
+                        <textarea name="message" class="form-input" rows="4" required></textarea>
+                        <span class="error-text">{{form.message.errors|default:''}}</span>
+                    </div>    
+                </div>
+                
+                <div class="btn-middle-container">
+                    <button type="submit" class="form-btn" id="submitBtn">
+                        Send
+                    </button>
+                </div>
+                </form>
+        </div>    
+    </div>
+{% endblock %}

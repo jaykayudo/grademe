@@ -1,0 +1,61 @@
+{% extends 'student/student-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="flex" style="margin-bottom: 15px;">
+        <div class="img-case">
+            <img src="{{student.image.url}}" alt="Profile Image" class="profile-image">
+        </div>
+        <div>
+            <h2 class="section-header">Profile</h2>
+            <p class="normal-text2">View your Personal Details</p>
+        </div>
+        
+        </div>
+        
+        <div>
+            <table class="profile-table">
+                <tr>
+                    <th>
+                        FullName
+                    </th>
+                    <td>
+                        {{student.first_name}} {{student.last_name}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Email
+                    </th>
+                    <td>
+                        {{student.email}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Registration Number
+                    </th>
+                    <td>
+                        {{student.matric_number}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Department
+                    </th>
+                    <td>
+                        {{student.department}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Phonenumber
+                    </th>
+                    <td>
+                        {{student.phonenumber}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+{% endblock %}

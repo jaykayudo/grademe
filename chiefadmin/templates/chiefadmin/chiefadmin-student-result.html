@@ -1,0 +1,62 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% load static %}
+{% block content %}
+    <div class="page-box">
+        <h1 class="text-center">GradeMe Result</h1>
+        <div class="info-box flex">
+                <div>
+                    <h3>Full Name</h3>
+                    <p class="capital-text">{{student.first_name}} {{student.last_name}}</p>
+                </div>
+                <div>
+                    <h3>Matric Number</h3>
+                    <p class="upper-text">{{student.matric_number}}</p>
+                </div>
+                <div>
+                    <h3>Session</h3>
+                    <p>{{session}}</p>
+                </div>
+                <div>
+                    <h3>Semester</h3>
+                    <p class="capital-text">{{semester}}</p>
+                </div>
+                <div>
+                    <h3>Department</h3>
+                    <p>{{student.department}}</p>
+                </div>
+            
+        </div>
+        <div class="result-box">
+            <table class="result-table">
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Title</th>
+                    <th>Unit</th>
+                    <th>Point</th>
+                    <th>Score</th>
+                    <th>Grade</th>
+                    <th>Uploaded By</th>
+                    <th>Approved By</th>
+                </tr>
+                {% for grade in grades %}
+                <tr>
+                    <td>{{grade.course}}</td>
+                    <td>{{grade.course.title}}</td>
+                    <td>{{grade.course.unit_load}}</td>
+                    <td>{{grade.point}}</td>
+                    <td>{{grade.score}}</td>
+                    <td class="upper-text">{{grade.get_grade_display}}</td>
+                    <td class="upper-text">{{grade.uploaded_by}}</td>
+                    <td class="upper-text">{{grade.approved_by}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="flex-between" style="padding: 20px;">
+                <h3>CGPA: {{gpa}}</h3>
+                <a href="{% url 'check_result_download' %}?session={{session.id}}&semester={{semester}}" class="form-btn">
+                    Download
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

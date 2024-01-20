@@ -1,0 +1,156 @@
+{% extends 'normaladmin/admin-base.html' %}
+{% load static %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'general/select2.min.css' %}">
+{% endblock %}
+{% block content %}
+<div class="form-cover">
+    <div class="result-form-box">
+        
+                <form  action="" method="post">
+                    <h2 class="text-center text-bold" style="margin-bottom: 10px;">Upload Singles</h2>
+                    <div class="dynamic-group" id="dynamic-group">
+                        {% for form in formset %}
+                        <div class="group-container">
+                            <div class="form-group-flex">
+                                <div class="side-form-group">
+                                <label class="form-input-label">Session</label>
+                                <select name="session" class="form-input" id="">
+                                    <option value="">--Select a Session--</option>
+                                </select>
+                                <span class="error-text"></span>
+                            </div> 
+                            <div class="side-form-group">
+                                <label class="form-input-label">Semester</label>
+                                <select name="session" class="form-input" id="">
+                                    <option value="">--Select a Semester--</option>
+                                </select>
+                                <span class="error-text"></span>
+                            </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-input-label">Full Name</label>
+                                <input type="text"  class="form-input"  readonly>
+                                <span class="error-text"></span>
+                            </div> 
+                            <div class="form-group">
+                                <label class="form-input-label">Matric Number</label>
+                                <input type="text" name="matric_number" class="form-input matricNumber"  required>
+                                <span class="error-text"></span>
+                            </div>  
+                            <div class="form-group">
+                                <label class="form-input-label">Course</label>
+                                <select name="session" class="form-input course-select" required>
+                                    <option value="">--Select a Course--</option>
+                                </select>
+                                <span class="error-text"></span>
+                            </div>  
+                            <div class="form-group-flex">
+                                <div class="side-form-group">
+                                <label class="form-input-label">Grade</label>
+                                <select name="session" class="form-input" id="" required>
+                                    <option value="">--Select a Grade--</option>
+                                </select>
+                                <span class="error-text"></span>
+                            </div> 
+                            <div class="side-form-group">
+                                <label class="form-input-label">Score</label>
+                                <input type="number" name="score" max="100" min="0" class="form-input"  required>
+                                <span class="error-text"></span>
+                            </div>
+                            </div>
+                           
+                        </div>
+                        {% if not forloop.first %}
+                        <div class="flex-end">
+                            <button type="button" class="form-btn" id="remove" >Remove Result</button>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                     <div class="flex-end">
+                        <button type="button" class="form-btn" id="add-form" >Add result</button>
+                    </div>
+                    <div class="btn-middle-container">
+                        <button type="button" class="form-btn" id="submitBtn">
+                            Submit
+                        </button>
+                    </div>
+                    </form>    
+        
+ 
+        
+    </div>
+</div>
+{% endblock %}    
+{% block extrascript %}
+    <script src="{% static 'general/jquery.js' %}"></script>
+    <script src="{% static 'general/select2.min.js' %}"></script>
+    <script>
+        let html = `
+    <div class="group-container">
+                            <div class="form-group-flex">
+                                <div class="side-form-group">
+                                <label class="form-input-label">Session</label>
+                                <select name="session" class="form-input" id="">
+                                    <option value="">--Select a Session--</option>
+                                </select>
+                                <span class="error-text"></span>
+                            </div> 
+                            <div class="side-form-group">
+                                <label class="form-input-label">Semester</label>
+                                <select name="session" class="form-input" id="">
+                                    <option value="">--Select a Semester--</option>
+                                </select>
+                                <span class="error-text"></span>
+                            </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-input-label">Full Name</label>
+                                <input type="text"  class="form-input"  readonly>
+                                <span class="error-text"></span>
+                            </div> 
+                            <div class="form-group">
+                                <label class="form-input-label">Matric Number</label>
+                                <input type="text" name="matric_number" class="form-input matricNumber"  required>
+                                <span class="error-text"></span>
+                            </div>  
+                            <div class="form-group">
+                                <label class="form-input-label">Course</label>
+                                <select name="session" class="form-input course-select" required>
+                                    <option value="">--Select a Course--</option>
+                                </select>
+                                <span class="error-text"></span>
+                            </div>  
+                            <div class="form-group-flex">
+                                <div class="side-form-group">
+                                <label class="form-input-label">Grade</label>
+                                <select name="session" class="form-input" id="" required>
+                                    <option value="">--Select a Grade--</option>
+                                </select>
+                                <span class="error-text"></span>
+                            </div> 
+                            <div class="side-form-group">
+                                <label class="form-input-label">Score</label>
+                                <input type="number" name="matric_number" max="100" min="0" class="form-input"  required>
+                                <span class="error-text"></span>
+                            </div>
+                            </div>
+                        <div class="flex-end">
+                            <button type="button" class="form-btn" id="remove" >Remove Result</button>
+                        </div>
+                           
+        </div>
+    
+    `
+    </script>
+    <script src="{% static 'normaladmin/normaladmin.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.course-select').select2();
+            resultNeed();
+        })
+    </script>
+{% endblock %}

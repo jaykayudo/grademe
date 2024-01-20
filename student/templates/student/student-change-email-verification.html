@@ -1,0 +1,17 @@
+{% extends 'student/student-base.html' %}
+{% block content %}
+        <form>
+        <h2 class="text-center text-bold" style="margin-bottom: 10px;">Verify Current Email</h2>
+        <div class="form-group">
+            <p class="normal-text2">A 6-digit Code was sent to your email. input the code to login.</p>
+        </div>
+        <div class="form-group">
+            <label class="form-input-label">Code</label>
+            <input type="tel" pattern="\d*" maxlength="6" class="form-input" placeholder="EX: 012345">
+            <span class="error-text"></span>
+        </div>
+        <div class="btn-middle-container">
+            <input type="submit" class="form-btn" value="Login">
+        </div>
+        </form>
+{% endblock %}

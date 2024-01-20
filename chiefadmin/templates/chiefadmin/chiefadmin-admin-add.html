@@ -1,0 +1,78 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% load static %}
+{% block content %}
+<div class="form-cover">
+    <div class="result-form-box">
+    
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <h2 class="text-center text-bold" style="margin-bottom: 10px;">{{form_type}} Admin</h2>
+                    <div>
+                        <span class="error-text">{{form.non_field_errors|default:""}}</span>
+                        <div class="group-container">
+                            <input type="hidden" name="created_by" value="{{request.usertype.id}}">
+                            <div class="form-group-flex">
+                                <div class="side-form-group">
+                                <label class="form-input-label">Firstname</label>
+                                <input type="text"  class="form-input" name="first_name" value="{{form.first_name.value|default:''}}"  required>
+                                <span class="error-text">{{form.first_name.errors|default:""}}</span>
+                            </div> 
+                            <div class="side-form-group">
+                                <label class="form-input-label">Lastname</label>
+                                <input type="text"  class="form-input" name="last_name" value="{{form.first_name.value|default:''}}"  required>
+                                <span class="error-text">{{form.last_name.errors|default:""}}</span>
+                            </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-input-label">Department</label>
+                                <select name="department" class="form-input" id="" required>
+                                    {% for id, x in form.fields.department.choices %}
+                                        <option {% if form.department.value == id %}selected{% endif %} value="{{id}}">{{x}}</option>
+                                    {% endfor %}
+                                </select>
+                                <span class="error-text">{{form.department.errors|default:""}}</span>
+                            </div>  
+                            <div class="form-group">
+                                <label class="form-input-label">Email</label>
+                                <input type="email" name="email" class="form-input" value="{{{{form.email.value|default:''}}}}"  required>
+                                <span class="error-text">{{form.email.errors|default:""}}</span>
+                            </div> 
+                            <div class="form-group">
+                                <label class="form-input-label">Phonenumber</label>
+                                <input type="tel" name="phonenumber" class="form-input" value="{{form.phonenumber.value|default:''}}"  required>
+                                <span class="error-text">{{form.phonenumber.errors|default:""}}</span>
+                            </div> 
+                            <div class="form-group">
+                                <label class="form-input-label">Choose Picture</label>
+                                <div>
+                                    <button type="button" class="form-btn" id="file-btn">
+                                        Choose File
+                                    </button>
+                                    <input type="file" name="image" id="file" accept="images/*"  hidden required>
+                                </div>
+                                
+                                <span class="error-text">{{form.image.errors|default:""}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-middle-container">
+                        <button type="button" class="form-btn" id="submitBtn">
+                            Submit
+                        </button>
+                    </div>
+                    </form>    
+        
+ 
+        
+    </div>
+</div>
+{% endblock %}    
+{% block extrascript %}
+    <script src="{% static 'normaladmin/normaladmin.js' %}"></script>
+    <script>
+        window.onload =function(){
+            addStudentNeed()
+        }
+    </script>
+{% endblock %}

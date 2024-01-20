@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Grade Me Student{% endblock %}</title>
+    <script src="{% static 'general/feather.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'general/helpers.css' %}">
+    <link rel="stylesheet" href="{% static 'general/style.css' %}">
+    {% block extrastyle %}{% endblock %}
+
+</head>
+<body>
+    <div class="page-container">
+        <div class="side-nav">
+            <div class="side-nav-header-section">
+                <div>
+                    <h2 class="side-nav-header-text" >GradeMe</h2>
+                    <p>Student</p> 
+                </div>
+                <div class="mobile-area">
+                        <button class="nav-link-button side-nav-toggle">
+                            <i data-feather="x"></i>
+                        </button>
+                </div>
+            </div>
+            <ul class="side-nav-list">
+                <li>
+                    <a href="{% url 'student:dashboard' %}" class="side-nav-link" >
+                            <i data-feather="home"></i> <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="side-nav-link drop-trigger" data-target="#dropnav" >
+                        <span style="margin-left: 0;">
+                            <i data-feather="user"></i> <span>Profile</span>
+                        </span> 
+                        <i data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-nav" id="dropnav">
+                        <li>
+                            <a href="{% url 'student:profile' %}" class="side-nav-link"><i data-feather="file"></i> <span>View Details</span></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'student:change_email' %}" class="side-nav-link"><i data-feather="mail"></i> <span>Change Email</span></a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="{% url 'student:check_result' %}" class="side-nav-link" >
+                            <i data-feather="award"></i> <span>Check Result</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'student:support' %}" class="side-nav-link" >
+                            <i data-feather="headphones"></i> <span>Support</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-page">
+            <div class="top-nav">
+                <div class="left-side">
+                    <div class="mobile-area flex">
+                        <button class="nav-link-button side-nav-toggle">
+                            <i data-feather="align-left"></i>
+                        </button>
+                        <div style="margin-left: 10px;">
+                            <h2 class="side-nav-header-text">GradeMe</h2>
+                            <p>Student</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <ul class="nav-list">
+                        <li><a href="{% url 'student:notification' %}" class="nav-link-button"><i data-feather="bell"></i></a></li>
+                        <li class="drop-holder">
+                            <a href="javascript:void(0)" class="nav-link drop-trigger" data-target="#dropnavfloat"><span style="margin-left: 0;"><i data-feather="user"></i><span>Jackson</span></span><i data-feather="chevron-down"></i></a>
+                            <ul class="dropdown-nav-float" id="dropnavfloat">
+                                <li>
+                                    <a href="{% url 'student:profile' %}" class="nav-link"><i data-feather="user"></i> <span>Profile</span></a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'student:logout' %}" class="nav-link"><i data-feather="log-out"></i> <span>Logout</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-container">
+                {% for message in messages %}
+                <div class="flash-message {{message.tag}}">
+                    <p>{{message}}</p>
+                    <span class="flash-message-close">
+                        <i data-feather="x"></i>
+                    </span>
+                </div>
+                {% endfor %}
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <script>
+        feather.replace();
+    </script>
+    <script src="{% static 'general/script.js' %}"></script>
+    {% block extrascript %}
+    {% endblock %}
+</body>
+</html>

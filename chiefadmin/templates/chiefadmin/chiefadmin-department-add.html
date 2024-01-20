@@ -1,0 +1,28 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% load static %}
+{% block content %}
+    <div class="form-cover">
+        <div class="form-box shadow-box">
+            {{form.errors|default:''}}
+            <form action=""  method="post">
+                {% csrf_token %}
+                <h2 class="text-center text-bold" style="margin-bottom: 10px;">{{form_type}} Department</h2>
+                <div id="forms">
+                    <input type="hidden" name="faculty" value="{{request.usertype.faculty.id}}" required>
+                    <input type="hidden" name="created_by" value="{{request.usertype.id}}" required>
+                    <div class="form-group">
+                        <label class="form-input-label">Department Name</label>
+                        <input type="text" class="form-input" name="name" value="{{form.name.value|default:''}}" placeholder="EX: Computer Science" required>
+                        <span class="error-text"></span>
+                    </div>  
+                </div>
+                <div class="btn-middle-container">
+                    <button type="submit" class="form-btn" id="submitBtn">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>    
+    </div>
+
+{% endblock %}

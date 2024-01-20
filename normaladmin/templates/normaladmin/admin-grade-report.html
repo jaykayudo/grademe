@@ -1,0 +1,64 @@
+{% extends 'normaladmin/admin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">Grade Report</h2>
+            <p class="normal-text2">View all report that student have filed</p>
+        </div>
+        <div style="width: 100%;">
+            <table class="upload-table">
+                <tr>
+                    <th>
+                        Student Reg No
+                    </th>
+                    <th>
+                        Course
+                    </th>
+                    <th>
+                        Grade
+                    </th>
+                    <th>
+                        Message
+                    </th>
+                    <th>
+                        Date Sent
+                    </th>
+                    <th>
+                        Replied
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+                {% for data in page_obj %}
+                <tr>
+                    <td>
+                        {{data.grade.student.matric_number}}
+                    </td>
+                    <td>
+                        {{data.grade.course}}
+                    </td>
+                
+                    <td>
+                        {{data.grade.get_grade_display}}
+                    </td>
+                    <td>
+                        {{data.message}}
+                    </td>
+                    <td>
+                        {{data.date_created}}
+                    </td>
+                    <td>
+                        {{data.replied|yesno}}
+                    </td>
+                    <td>
+                        <a href="#" class="form-btn">Reply</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% include "pagination.html" %}
+        
+    </div>
+{% endblock %}

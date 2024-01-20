@@ -1,0 +1,93 @@
+{% extends 'normaladmin/admin-base.html' %}
+{% block content %}
+    <div>
+        <section class="home-box">
+            <h2 class="section-header">
+                Admin Dashboard
+            </h2>
+            <div class="section-metrics">
+            <div class="metrics-box" style="background-color: #fce76273;">
+                <div>
+                    <p>Number of Student</p>
+                    <h2>{{number_of_students}}</h2>
+                </div>
+                <div>
+                    <i data-feather="file-text" style="color: #ffe014;"></i>
+                </div>
+            </div>
+            <div class="metrics-box" style="background-color: #69fff06f;">
+                <div>
+                    <p>Number of Result Uploaded</p>
+                    <h2>{{number_of_uploaded_grades}}</h2>
+                </div>
+                <div>
+                    <i data-feather="file-text" style="color: #69FFF1;"></i>
+                </div>
+            </div>
+            <div class="metrics-box" style="background-color: #5465ff6c;">
+                <div>
+                    <p>Number of Unanswered Report Message</p>
+                    <h2>2</h2>
+                </div>
+                <div>
+                    <i data-feather="file-text" style="color: #5465FF;"></i>
+                </div>
+            </div>
+            <div class="metrics-box" style="background-color: #f45b6876;">
+                <div>
+                    <p>Number of Unapproved Result</p>
+                    <h2>{{number_of_unapproved_result}}</h2>
+                </div>
+                <div>
+                    <i data-feather="file-text" style="color: #F45B69;"></i>
+                </div>
+            </div>
+            </div>
+            
+            
+        </section>
+        <section class="flex-between">
+        <section class="home-box" style="width: 60%;">
+            <h2 class="section-header">
+                Recent Notification
+            </h2>
+            <section class="section-content">
+                {% for data in latest_notification %}
+                <div class="notification-box">
+                    <div>
+                        <h3>{{data.title}}</h3>
+                        <p>{{data.message}}</p>
+                    </div> 
+                    <div>
+                        <p class="small-text">
+                            {{data.date|date:'d/m/Y h:i'}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </section>
+        </section> 
+        <section class="home-box" style="width: 37%">
+            <h2 class="section-header">
+                Recent Actions
+            </h2>
+            <section class="section-content">
+                {% for data in latest_action %}
+                <div class="notification-box">
+                    <div>
+                        <h3>{{data.title}}</h3>
+                        <p>{{data.message}}</p>
+                    </div> 
+                    <div>
+                        <p class="small-text">
+                            {{data.date|date:'d/m/Y h:i'}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </section>
+        </section>
+        </section>
+        
+    </div>
+{% endblock %}

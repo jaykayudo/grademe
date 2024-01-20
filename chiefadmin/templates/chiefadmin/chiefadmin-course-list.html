@@ -1,0 +1,57 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">Courses</h2>
+            <p class="normal-text2">View all  Courses</p>
+        </div>
+        <div style="width: 100%;">
+            <table class="upload-table">
+                <tr>
+                    <th>
+
+                    </th>
+                    <th>
+                        title
+                    </th>
+                    <th>
+                        Added by
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+                {% for object in page_obj %}
+                <tr>
+                    <td>
+                        {{object.code}}
+                    </td>
+            
+                    <td>
+                        {{object.title}}
+                    </td>
+                    <td>
+                       <div class="flex">
+                        <div class="table-image">
+                            <img src="{{object.created_by.image.url|default:''}}" alt="">
+                        </div>
+                        <div>
+                            {{object.created_by}}
+                        </div>
+                       </div>
+                    </td>
+                    
+                    <td >
+                        <a href="{% url 'chiefadmin:course_edit' object.id %}" class="form-btn">
+                            Edit
+                        </a>
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </table>
+                {% include 'paginator.html' %}
+        </div>
+        
+    </div>
+{% endblock %}

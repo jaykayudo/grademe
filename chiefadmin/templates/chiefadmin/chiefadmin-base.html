@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Grade Me Chief Admin{% endblock %}</title>
+    <script src="{% static 'general/feather.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'general/helpers.css' %}">
+    <link rel="stylesheet" href="{% static 'general/style.css' %}">
+    {% block extrastyle %}
+    {% endblock %}
+
+</head>
+<body>
+    <div class="page-container">
+        <div class="side-nav">
+            <div class="side-nav-header-section">
+                <div>
+                    <h2 class="side-nav-header-text" >GradeMe</h2>
+                    <p>Chief Admin</p> 
+                </div>
+                <div class="mobile-area">
+                        <button class="nav-link-button side-nav-toggle">
+                            <i data-feather="x"></i>
+                        </button>
+                </div>
+            </div>
+            <ul class="side-nav-list">
+                <li>
+                    <a href="{% url 'chiefadmin:dashboard' %}" class="side-nav-link"><i data-feather="home"></i> <span>Home</span></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="side-nav-link drop-trigger" data-target="#dropnav1" >
+                        <span style="margin-left: 0;">
+                            <i data-feather="user"></i> <span>Profile</span>
+                        </span> 
+                        <i data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-nav" id="dropnav1">
+                        <li>
+                            <a href="{% url 'chiefadmin:profile' %}" class="side-nav-link active"><i data-feather="file"></i> <span>View Profile</span></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'chiefadmin:change_email' %}" class="side-nav-link"><i data-feather="mail"></i> <span>Change Email</span></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'chiefadmin:change_password' %}" class="side-nav-link"><i data-feather="lock"></i> <span>Change Password</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="side-nav-link drop-trigger" data-target="#dropnav2" >
+                        <span style="margin-left: 0;">
+                            <i data-feather="file-text"></i> <span>Result</span>
+                        </span> 
+                        <i data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-nav" id="dropnav2">
+                        <li>
+                            <a href="{% url 'chiefadmin:result_single' %}" class="side-nav-link active"><i data-feather="file"></i> <span>Approve Singles</span></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'chiefadmin:result_bulk' %}" class="side-nav-link"><i data-feather="layers"></i> <span>Approve Bulk</span></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'chiefadmin:result_history' %}" class="side-nav-link"><i data-feather="archive"></i> <span>Result History</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="side-nav-link drop-trigger" data-target="#dropnav3" >
+                        <span style="margin-left: 0;">
+                            <i data-feather="users"></i> <span>Student</span>
+                        </span> 
+                        <i data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-nav" id="dropnav3">
+                        <li>
+                            <a href="{% url 'chiefadmin:student_add' %}" class="side-nav-link active"><i data-feather="user-plus"></i> <span>Add Student</span></a>
+                        </li>
+                        <!-- <li>
+                            <a href="" class="side-nav-link active"><i data-feather="user-plus"></i> <span>Approve Student</span></a>
+                        </li> -->
+                        <li>
+                            <a href="{% url 'chiefadmin:student' %}" class="side-nav-link"><i data-feather="users"></i> <span>View Students</span></a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="side-nav-link drop-trigger" data-target="#dropnav4" >
+                        <span style="margin-left: 0;">
+                            <i data-feather="message-square"></i> <span>Admin</span>
+                        </span> 
+                        <i data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-nav" id="dropnav4">
+                        <li>
+                            <a href="{% url 'chiefadmin:admin_add' %}" class="side-nav-link active"><i data-feather="message-circle"></i> <span>Add Admins</span></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'chiefadmin:admin' %}" class="side-nav-link"><i data-feather="headphones"></i> <span>View Admins</span></a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="side-nav-link drop-trigger" data-target="#dropnav5" >
+                        <span style="margin-left: 0;">
+                            <i data-feather="message-square"></i> <span>Department</span>
+                        </span> 
+                        <i data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-nav" id="dropnav5">
+                        <li>
+                            <a href="{% url 'chiefadmin:department_add' %}" class="side-nav-link active"><i data-feather="message-circle"></i> <span>Add Department</span></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'chiefadmin:department' %}" class="side-nav-link"><i data-feather="headphones"></i> <span>View Department</span></a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="side-nav-link drop-trigger" data-target="#dropnav6" >
+                        <span style="margin-left: 0;">
+                            <i data-feather="message-square"></i> <span>Course</span>
+                        </span> 
+                        <i data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-nav" id="dropnav6">
+                        <li>
+                            <a href="{% url 'chiefadmin:course_add' %}" class="side-nav-link active"><i data-feather="message-circle"></i> <span>Add Course</span></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'chiefadmin:course' %}" class="side-nav-link"><i data-feather="headphones"></i> <span>View Courses</span></a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="main-page">
+            <div class="top-nav">
+                <div class="left-side">
+                    <div class="mobile-area flex">
+                        <button class="nav-link-button side-nav-toggle">
+                            <i data-feather="align-left"></i>
+                        </button>
+                        <div style="margin-left: 10px;">
+                            <h2 class="side-nav-header-text">GradeMe</h2>
+                            <p>Chief Admin</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <ul class="nav-list">
+                        <li><a href="" class="nav-link-button"><i data-feather="bell"></i></a></li>
+                        <li class="drop-holder">
+                            <a href="#" class="nav-link drop-trigger" data-target="#dropnavfloat"><span style="margin-left: 0;"><i data-feather="user"></i><span>Jackson</span></span><i data-feather="chevron-down"></i></a>
+                            <ul class="dropdown-nav-float" id="dropnavfloat">
+                                <li>
+                                    <a href="{% url 'chiefadmin:profile' %}" class="nav-link"><i data-feather="user"></i> <span>Profile</span></a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'chiefadmin:logout' %}" class="nav-link"><i data-feather="log-out"></i> <span>Logout</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-container">
+                {% for message in messages %}
+                <div class="flash-message {{message.tags}}">
+                    <p>{{message}}</p>
+                    <span class="flash-message-close">
+                        <i data-feather="x"></i>
+                    </span>
+                </div>
+                {% endfor %}
+                {% block content %}
+                
+                {% endblock%}
+            </div>
+        </div>
+    </div>
+    <script>
+        feather.replace();
+    </script>
+    <script src="{% static 'general/script.js' %}"></script>
+    {% block extrascript %}
+    {% endblock %}
+</body>
+</html>

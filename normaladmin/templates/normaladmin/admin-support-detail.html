@@ -1,0 +1,88 @@
+{% extends 'normaladmin/admin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="flex" style="margin-bottom: 15px;">
+        <div>
+            <h2 class="section-header">Message Details</h2>
+            <!-- <p class="normal-text2"></p> -->
+        </div>
+        </div>
+        
+        <div>
+            <table class="profile-table">
+                <tr>
+                    <th>
+                        FullName
+                    </th>
+                    <td>
+                        {{object.student.first_name}} {{object.student.last_name}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Email
+                    </th>
+                    <td>
+                        <a href="mailto:{{object.student.email}}">
+                           {{object.student.email}}
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Matric Number
+                    </th>
+                    <td>
+                        {{object.student.matric_number}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Reason
+                    </th>
+                    <td>
+                        {{object.title}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Message
+                    </th>
+                    <td>
+                        {{object.message}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Date Sent
+                    </th>
+                    <td>
+                        {{object.date}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <section style="margin-top: 25px;">
+            {% if object.replied %}
+            <div>{{object.reply}}</div>
+            {% else %}
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="form-input-label">
+                        Message
+                    </label>
+                    <textarea name="message" class="form-input" rows="5" required></textarea>
+                    <span class="error-text">
+                        {{ form.message.errors|default:"" }}
+                    </span>
+                </div>
+                <div class="flex-start">
+                    <input type="submit" class="form-btn" value="Send">
+                </div>
+            </form>
+            {% endif %}
+        </section>
+    </div>
+{% endblock %}

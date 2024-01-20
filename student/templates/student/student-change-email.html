@@ -1,0 +1,27 @@
+{% extends 'student/student-base.html' %}
+{% load static %}
+{% block content %}
+    <div class="form-cover">
+        <div class="form-box shadow-box">
+                {% csrf_token %}
+                <h2 class="text-center text-bold" style="margin-bottom: 10px;">Change Email</h2>
+                <div id="forms">
+                    <div class="form-group">
+                        <label class="form-input-label">Current Email</label>
+                        <input type="email" id="currentEmail" class="form-input" placeholder="EX: emailaddress@domain.com">
+                        <span class="error-text"></span>
+                    </div>  
+                </div>
+                
+                <div class="btn-middle-container">
+                    <button type="button" class="form-btn" id="submitBtn">
+                        Submit
+                    </button>
+                </div>
+        </div>    
+    </div>
+{% block extrascript %}
+<script src="{% static 'general/jquery.js' %}"></script>
+<script src="{% static 'student/student-change-email.js' %}"></script>
+{% endblock %}
+{% endblock %}

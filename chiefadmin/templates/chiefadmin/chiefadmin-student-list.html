@@ -1,0 +1,87 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">Students</h2>
+            <p class="normal-text2">View all  student and Status</p>
+        </div>
+        <div style="width: 100%;">
+            <table class="upload-table">
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Matric Number
+                    </th>
+                    <th>
+                        Department
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Date Uploaded
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Uploaded by
+                    </th>
+                </tr>
+                {% for object in page_obj %}
+                <tr>
+                    
+                    <td>
+                        <div class="flex">
+                            <div class="table-image">
+                                <img src="{{object.image.url|default:''}}" alt="{{object.first_name}} profile image">
+                            </div>
+                            <div>
+                                <a href="{% url 'normaladmin:student_details' object.id %}">
+                                    {{object.first_name}} {{object.lastname}}
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        {{object.matric_number}}
+                    </td>
+                    <td>
+                        {{object.department}}
+                    </td>
+                    <td>
+                        {{object.email}}
+                    </td>
+                    <td>
+                        {{object.date_created}}
+                    </td>
+                    <td class="{% if object.approved %}approved{% else %}pending{% endif %}">
+                        {% if object.approved %}
+                        Approved
+                        {% else %}
+                        Pending
+                        {% endif %}
+                    </td>
+                    <td>
+                    {% if object.created_by %}
+                       <div class="flex">
+                        <div class="table-image">
+                            <img src="{{object.created_by.image.url|default:''}}" alt="">
+                        </div>
+                        <div>
+                            {{object.created_by.first_name}} {{object.created_by.lastname}}
+                        </div>
+                       </div>
+                    {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+                {% include 'paginator.html' %}
+        </div>
+        
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'student/student-base.html' %}
+{% load static %}
+{% block content %}
+    <div class="form-cover">
+        <div class="form-box shadow-box">
+            <h2 class="text-center text-bold" style="margin-bottom: 10px;">Report Grade</h2>
+            <table class="profile-table2">
+                <tr>
+                    <th>Course</th>
+                    <td class="upper-text">{{grade.course}}</td>
+                </tr>
+                <tr>
+                    <th>
+                        Grade
+                    </th>
+                    <th>
+                        {{grade.get_grade_display}}
+                    </th>
+                </tr>
+            </table>
+            <form action="" method="post">
+                {% csrf_token %}
+                
+                <div id="forms">
+                    <input type="hidden" name="department" value="{{request.usertype.department}}">
+                    <input type="hidden" name="grade" value="{{grade.id}}">
+                    <div class="form-group">
+                        <label class="form-input-label">Message</label>
+                        <textarea name="message"  rows="4" class="form-input" required></textarea>
+                        <span class="error-text">{{form.message.errors|default:''}}</span>
+                    </div>  
+                </div>
+                
+                <div class="btn-middle-container">
+                    <button type="submit" class="form-btn" id="submitBtn">
+                        Submit
+                    </button>
+                </div>
+                </form>
+        </div>    
+    </div>
+{% endblock %}

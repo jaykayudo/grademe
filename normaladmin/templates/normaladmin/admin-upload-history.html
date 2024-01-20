@@ -1,0 +1,68 @@
+{% extends 'normaladmin/admin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">Upload History</h2>
+            <p class="normal-text2">View all result upload and status regarding your department</p>
+        </div>
+        <div style="width: 100%;">
+            <table class="upload-table">
+                <tr>
+                    <th>
+                        Session
+                    </th>
+                    <th>
+                        Semester
+                    </th>
+                    <th>
+                        Matric Number
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Date Uploaded
+                    </th>
+                    <th>
+                        Date Approved/Rejected
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Uploaded by
+                    </th>
+                </tr>
+                {% for object in page_obj %}
+                <tr>
+                    <td>
+                        {{object.session}}
+                    </td>
+                    <td>
+                        {{object.get_semester_display}}
+                    </td>
+                    <td>
+                        {{object.matric_number|default:"None"}}
+                    </td>
+                    <td>
+                        {{object.type}}
+                    </td>
+                    <td>
+                        {{object.date_created}}
+                    </td>
+                    <td>
+                        {{object.date_updated}}
+                    </td>
+                    <td class="{% if object.status == 2 %}approved{% else %}rejected{% endif%}">
+                        {{object.get_status_display}}
+                    </td>
+                    <td>
+                        {{object.approved_by}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+    </div>
+{% endblock %}

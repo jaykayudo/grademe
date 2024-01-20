@@ -1,0 +1,53 @@
+{% extends 'normaladmin/admin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="flex" style="margin-bottom: 15px;">
+        <div class="img-case">
+            <img src="{{admin.image.url}}" alt="Profile Image" class="profile-image">
+        </div>
+        <div>
+            <h2 class="section-header">Profile</h2>
+            <p class="normal-text2">View your Personal Details</p>
+        </div>
+        
+        </div>
+        
+        <div>
+            <table class="profile-table">
+                <tr>
+                    <th>
+                        FullName
+                    </th>
+                    <td class="capital-text">
+                        {{admin.first_name}} {{admin.last_name}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Email
+                    </th>
+                    <td>
+                        {{admin.email}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Department
+                    </th>
+                    <td class="capital-text">
+                        {{admin.department}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Phonenumber
+                    </th>
+                    <td>
+                        {{admin.phonenumber}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+{% endblock %}

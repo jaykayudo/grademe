@@ -1,0 +1,39 @@
+{% extends 'student/student-base.html' %}
+{% load static %}
+{% block content %}
+    <div class="form-cover">
+        <div class="form-box shadow-box">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h2 class="text-center text-bold" style="margin-bottom: 10px;">Check Result</h2>
+                <div id="forms">
+                    <div class="form-group">
+                        <label class="form-input-label">Session</label>
+                        <select name="session" class="form-input" id="" required>
+                            <option value="">--Select a Session--</option>
+                            {% for id, x in form.fields.session.choices %}
+                              <option {% if form.session.value == id %}selected{% endif %} value="{{id}}">{{x}}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="error-text">{{form.session.errors|default:""}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-input-label">Semester</label>
+                        <select name="semester" class="form-input">
+                            <option value="">---Select a Semester--</option>
+                            <option value="1">First Semester</option>
+                            <option value="2">Second Semester</option>
+                        </select>
+                        <span class="error-text">{{form.semester.errors|default:""}}</span>
+                    </div>    
+                </div>
+                
+                <div class="btn-middle-container">
+                    <button type="submit" class="form-btn" id="submitBtn">
+                        Submit
+                    </button>
+                </div>
+                </form>
+        </div>    
+    </div>
+{% endblock %}

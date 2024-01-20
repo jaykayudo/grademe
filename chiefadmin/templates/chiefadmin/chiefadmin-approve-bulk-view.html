@@ -1,0 +1,81 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="flex" style="margin-bottom: 15px;">
+       
+        <div>
+            <h2 class="section-header">Result Detail</h2>
+        </div>
+        
+        </div>
+        
+        <div>
+            <table class="profile-table2">
+                <tr>
+                    <th>
+                        Session
+                    </th>
+                    <td>
+                        {{object.session}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Semester
+                    </th>
+                    <td>
+                        {{object.get_semester_display}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Department
+                    </th>
+                    <td class="capital-text">
+                        {{object.department}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Course
+                    </th>
+                    <td class="capital-text">
+                        {{object.course}} / {{object.course.title}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        File
+                    </th>
+                    <td>
+                        <a href="{{object.file.url}}" class="form-btn">
+                           {{object.file.name}}
+                        </a>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Uploaded By
+                    </th>
+                    <td>
+                        <div class="flex">
+                            <div class="table-image">
+                                <img src="{{object.uploaded_by.image.url|default:''}}" alt="">
+                            </div>
+                            <div>
+                                {{object.uploaded_by}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                
+            </table>
+            <div class="flex-between" style="padding: 15px 0;">
+                <a href="{% url 'chiefadmin:result_bulk_status_change' object.id 2 %}" class="btn success-btn">Approve</a>
+                <a href="{% url 'chiefadmin:result_bulk_status_change' object.id 3 %}" class="btn danger-btn">Reject</a>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}

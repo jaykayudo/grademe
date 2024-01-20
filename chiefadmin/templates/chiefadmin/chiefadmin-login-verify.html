@@ -1,0 +1,23 @@
+{% extends 'login-base.html' %}
+{% block title %}Admin Login Verification{% endblock %}
+{% block content %}
+        <form action="" method="post">
+            {% csrf_token %}
+        <h2 class="text-center text-bold" style="margin-bottom: 10px;">Chief Admin Login</h2>
+        <span class="error-text">
+            {{form.non_field_errors|default:""}}
+        </span>
+        <div class="form-group">
+            <p class="normal-text2">A 6-digit Code was sent to your email. input the code to login.</p>
+        </div>
+        <div class="form-group">
+            <label class="form-input-label">Code</label>
+            <input type="tel" pattern="\d*" maxlength="6"class="form-input" value="{{form.code.value|default:''}}" 
+            name="code" placeholder="EX: 012345" required>
+            <span class="error-text">{{form.code.errors|default:""}}</span>
+        </div>
+        <div class="btn-middle-container">
+            <input type="submit" class="form-btn" value="Login">
+        </div>
+        </form>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="flex" style="margin-bottom: 15px;">
+        <div class="img-case">
+            <img src="{{chiefadmin.image.url}}" alt="Profile Image" class="profile-image">
+        </div>
+        <div>
+            <h2 class="section-header">Profile</h2>
+            <p class="normal-text2">View your Personal Details</p>
+        </div>
+        
+        </div>
+        
+        <div>
+            <table class="profile-table">
+                <tr>
+                    <th>
+                        FullName
+                    </th>
+                    <td class="capital-text">
+                        {{chiefadmin.first_name}} {{chiefadmin.last_name}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Email
+                    </th>
+                    <td>
+                        {{chiefadmin.user.email}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Faculty
+                    </th>
+                    <td class="capital-text">
+                        {{chiefadmin.faculty}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Phonenumber
+                    </th>
+                    <td>
+                        {{chiefadmin.phonenumber}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+{% endblock %}

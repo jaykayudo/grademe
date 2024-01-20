@@ -1,0 +1,80 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">Admin</h2>
+            <p class="normal-text2">View all  Admin</p>
+        </div>
+        <div style="width: 100%;">
+            <table class="upload-table">
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Department
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Date Uploaded
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Uploaded by
+                    </th>
+                </tr>
+                {% for object in page_obj %}
+                <tr>
+
+                    <td>
+                        <div class="flex">
+                            <div class="table-image">
+                                <img src="" alt="">
+                            </div>
+                            <div>
+                                <a href="{% url 'chiefadmin:admin_details'  object.id %}">
+                                    {{object}}
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        {{object.department}}
+                    </td>
+                    <td>
+                        {{object.email}}
+                    </td>
+                    <td>
+                        {{object.date_created|date:"d-m-Y"}}
+                    </td>
+                    <td class="{% if object.user.is_active %}approved{% else %}rejected{% endif %}">
+                        {% if object.user.is_active %}
+                        Active
+                        {% else %}
+                        Inactive
+                        {% endif %}
+                    </td> 
+                    <td>
+                       <div class="flex">
+                        <div class="table-image">
+                            <img src="{{object.created_by.image.url|default:''}}" alt="Profile Image">
+                        </div>
+                        <div>
+                            {{object.created_by}}
+                        </div>
+                       </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                
+            </table>
+                {% include 'paginator.html' %}
+        </div>
+        
+    </div>
+{% endblock %}

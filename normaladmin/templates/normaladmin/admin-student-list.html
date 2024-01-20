@@ -1,0 +1,56 @@
+{% extends 'normaladmin/admin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="text-center">
+            <h2 class="section-header">All Student</h2>
+            <p class="normal-text2">View all student in department</p>
+        </div>
+        <div style="width: 100%;">
+            <table class="upload-table">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Matric Number
+                    </th>
+                    <th>
+                        Active
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                </tr>
+                {% for object in page_obj %}
+                <tr>
+                    <td>
+                        <div class="flex">
+                            <div class="table-image">
+                                <img src="{{object.image.url|default:''}}" alt="{{object.first_name}} profile image">
+                            </div>
+                            <div>
+                                <a href="{% url 'normaladmin:student_details' object.id %}">
+                                    {{object.first_name}} {{object.lastname}}
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </td>
+                    <td>
+                        {{object.matric_number}}
+                    </td>
+                    <td class="{% if object.approved %}approved{% else %}pending{% endif %}">
+                        {{object.approved|yesno}}
+                    </td>
+                    <td>
+                        {{object.email}}
+                    </td>
+                    
+                </tr>
+               {% endfor %}
+            </table>
+        </div>
+        
+    </div>
+{% endblock %}

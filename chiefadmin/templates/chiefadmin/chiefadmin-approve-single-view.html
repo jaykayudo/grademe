@@ -1,0 +1,102 @@
+{% extends 'chiefadmin/chiefadmin-base.html' %}
+{% block content %}
+    <div class="page-box">
+        <div class="flex" style="margin-bottom: 15px;">
+       
+        <div>
+            <h2 class="section-header">Result Detail</h2>
+        </div>
+        
+        </div>
+        
+        <div>
+            <table class="profile-table2">
+                <tr>
+                    <th>
+                        Session
+                    </th>
+                    <td>
+                        {{object.session}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Semester
+                    </th>
+                    <td>
+                        {{object.get_semester_display}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Matric Number
+                    </th>
+                    <td>
+                        {{object.student.matric_number}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Department
+                    </th>
+                    <td>
+                        {{object.department}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Course
+                    </th>
+                    <td>
+                        {{object.course}} / {{object.course.title}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Course Unit Load
+                    </th>
+                    <td>
+                        {{object.course_unit_load}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Grade
+                    </th>
+                    <td>
+                       {{object.get_grade_display}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Score
+                    </th>
+                    <td>
+                        {{object.score}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Uploaded By
+                    </th>
+                    <td>
+                        <div class="flex">
+                            <div class="table-image">
+                                <img src="{{object.uploaded_by.image.url|default:''}}" alt="">
+                            </div>
+                            <div>
+                                {{object.uploaded_by}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                
+            </table>
+            <div class="flex-between" style="padding: 15px 0;">
+                <a href="{% url 'chiefadmin:result_single_status_change' object.id 2 %}" class="btn success-btn">Approve</a>
+                <a href="{% url 'chiefadmin:result_single_status_change' object.id 3 %}" class="btn danger-btn">Reject</a>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}
