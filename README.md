@@ -78,6 +78,7 @@ email: student@gmail.com (passwordless sign in)
   <img src="https://github.com/devicons/devicon/blob/master/icons/django/django-plain-wordmark.svg" title="Django" alt="Django" width="40" />&nbsp;
 </div>
 ---
+
 ## Third Party Packages
 - Django Role Permission: for a more enhanced way of managing permissions
 - Django User agents: for user's device information
