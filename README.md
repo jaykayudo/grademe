@@ -36,15 +36,15 @@ Start the server
 
 ```bash
 Chief Admin
-email: chiefadmin@gmail.com
+email: chiefadmin@grademe.com
 password: chiefadmin
 
 Admin
-email: admin@gmail.com
+email: admin@grademe.com
 password: admin
 
 Student
-email: student@gmail.com (passwordless sign in)
+email: student@grademe.com (passwordless sign in)
 ```
 ## Features
 
@@ -60,6 +60,7 @@ email: student@gmail.com (passwordless sign in)
 - Device Tracking
 - Actions to Keep track of all actions performed by admins
 - Auth Feautures: Reset Password for Chiefadmin, Change Password, Change Email
+- Passwordless sign in for students
 
 
 
@@ -77,7 +78,7 @@ email: student@gmail.com (passwordless sign in)
  <img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original-wordmark.svg" title="Python" alt="Python" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/django/django-plain-wordmark.svg" title="Django" alt="Django" width="40" />&nbsp;
 </div>
----
+
 
 ## Third Party Packages
 - Django Role Permission: for a more enhanced way of managing permissions
